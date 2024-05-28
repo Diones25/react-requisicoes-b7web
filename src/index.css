@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  h1 {
+    @apply text-2xl;
+    @apply bg-yellow-600;
+  }
+} */
+
+@layer components {
+  .card {
+    @apply m-2 p-3 border-2 border-gray-700 rounded-md
+  }
+  body {
+    background: #292929;
+    color: #fff;
+  }
+}
