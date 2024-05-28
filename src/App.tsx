@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios";
 import { Post } from "./types/Post";
 
-
 const Page = () => {
   const query = useQuery({
     queryKey: ['posts'],
