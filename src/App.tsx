@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { usePosts } from "./utils/queries";
-import { BeatLoader, ClipLoader, ScaleLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 const Page = () => {
   const limit = 3;
