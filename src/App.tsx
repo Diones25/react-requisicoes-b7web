@@ -27,6 +27,16 @@ const Page = () => {
       title: 'Teste',
       body: 'Corpo de tes',
       userId: 7
+    }, {
+      onSuccess(retorno, data, context) {
+        
+      },
+      onError(error, data, context) {
+        
+      },
+      onSettled(detorno, error, data, context) {
+        
+      },
     });
   }
 
