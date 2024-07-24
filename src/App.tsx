@@ -22,8 +22,8 @@ const Page = () => {
     }
   });
 
-  const handleAddButton = () => {
-    addMutation.mutate({
+  const handleAddButton = async () => {
+    await addMutation.mutateAsync({
       title: 'Teste',
       body: 'Corpo de tes',
       userId: 7
