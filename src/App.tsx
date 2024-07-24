@@ -1,42 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
 import { usePosts } from "./utils/queries";
 import { BeatLoader } from "react-spinners";
-import { addPost } from "./utils/api";
+import { useAddPost } from "./utils/mutations";
 
 const Page = () => {
   const posts = usePosts();
-  const addMutation = useMutation({
-    mutationFn: addPost,
-    onMutate: (data) => {
-      console.log("Dados da mutaion ", data)
-    },
-    onError: (error, data, context) => {
-      console.log(error);
-    },
-    onSuccess: (retorno, data, context) => {
-      console.log("Retorno no onSuccess ", retorno)
-    },
-    onSettled: (retorno, error, data, context) => { //roda por ultimo independente de dar erro ou não
-      console.log("Retorno no OnSettled ", retorno);
-      console.log("Erro no OnSettled ", error);
-    }
-  });
+  const addPost = useAddPost();
 
   const handleAddButton = () => {
-    addMutation.mutate({
+    addPost.mutate({
       title: 'Teste',
       body: 'Corpo de tes',
       userId: 7
-    }, {
-      onSuccess(retorno, data, context) {
-        
-      },
-      onError(error, data, context) {
-        
-      },
-      onSettled(data, error, variables, context) {
-        
-      },
     });
   }
 
@@ -48,9 +22,9 @@ const Page = () => {
         <div className="border border-white p-3 ny-3">
           <p>Adicionar Novo Post</p>
 
-          <p>Status: { addMutation.status }</p>
+          <p>Status: { addPost.status }</p>
 
-          <button disabled={addMutation.isPending} className="border border-red-500 px-2" onClick={handleAddButton}>Adicionar</button>
+          <button disabled={addPost.isPending} className="border border-red-500 px-2" onClick={handleAddButton}>Adicionar</button>
         </div>
 
         {posts.isLoading &&
