@@ -7,7 +7,11 @@ type Inputs = {
 }
 
 const Page = () => {
-  const { handleSubmit, register } = useForm<Inputs>();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<Inputs>();
 
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data)
@@ -24,6 +28,9 @@ const Page = () => {
             placeholder="Digite seu nome"
             className="border border-white p-3 text-black"
           />
+          {errors.name?.type === 'required' && <p className="text-red-500">Este item obrigatório...</p>}
+          {errors.name?.type === 'minLength' && <p className="text-red-500">O nome deve ser maior que 2 caracteres...</p>}
+          {errors.name?.type === 'maxLength' && <p className="text-red-500">O nome deve ser menor que 20 caracteres...</p>}
 
           <input
             type="text"
@@ -38,6 +45,8 @@ const Page = () => {
             placeholder="Digite sua idade"
             className="block mt-3 border border-white p-3 text-black"
           />
+
+          {errors.age && <p className="text-red-500">Este item precisa ser no mínimo 18 anos</p>}
 
           <input
             type="submit"
